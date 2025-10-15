@@ -6,7 +6,7 @@ public record StockStatusMessage(
         UUID id,
         String status
 ) {
-    public boolean active( {
+    public boolean active() {
         return status.equals("AVAILABLE");
     }
 }
