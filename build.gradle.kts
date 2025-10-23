@@ -25,14 +25,14 @@ repositories {
     mavenCentral()
 }
 
-var mapStructVersion = "1.6.3"
+val mapStructVersion = "1.6.3"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-amqp")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.mapstruct:mapstruct:$mapStructVersion")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9")
 
     compileOnly("org.projectlombok:lombok")
 
