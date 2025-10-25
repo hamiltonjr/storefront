@@ -1,43 +1,37 @@
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
 
-  devtools:
-    remote:
-      secret: 123
-    restart:
-      trigger-file: trigger.txt
+server:
+  port: 8081
+  servlet:
+    context-path: /storefront
 
   datasource:
-    url: jdbc:h2:mem:storefront
-    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:storefront;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
     username: sa
     password:
 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
-        show_sql: true
         format_sql: true
 
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      settings:
-        trace: false
-        web-allow-others: true
-
   rabbitmq:
-    host: localhost
+    host: jaragua.cloudamqp.com
     port: 5672
-    username: admin
-    password: admin
+    username: DIOTeam
+    password: HGJr1@_mQ
     virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: auto
+    template:
+      default-receive-queue: product-change-availability
     queue:
-      product-change-availability: product.change.availability.queue
-
-warehouse:
-  base-path: http://localhost:8080/warehouse
+      product-change-availability: product-change-availability

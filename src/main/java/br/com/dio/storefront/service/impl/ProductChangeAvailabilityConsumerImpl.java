@@ -25,7 +25,7 @@ public class ProductChangeAvailabilityConsumerImpl implements IProductChangeAvai
      *
      * @param message Mensagem contendo id do produto e status
      */
-    @RabbitListener(queues = "${spring.rabbitmq.queue.product-change-availability}")
+    @RabbitListener(queues = "#{productChangeAvailabilityQueue.name}")
     @Override
     public void receive(StockStatusMessage message) {
         service.changeActivated(message.id(), message.active());
